@@ -53,13 +53,13 @@ textarea {
 	z-index:0;
 }
 
-.poem{
+.pom{
 	position:fixed;
 	font-size: x-large;
 	padding: 15px;
 	font-family:  'Times New Roman', Times, serif, 'Microsoft YaHei';
-	color: dimgray;
-	display:none;
+	text-align:right;
+	white-space:nowrap;
 }
 
 h1{

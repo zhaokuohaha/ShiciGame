@@ -1,7 +1,4 @@
 ﻿$(function () {
-	var abg = $(".animate-background");
-	var bgColor = GetRandomColor(190,240);
-	abg.css("background", bgColor);
 	var data = [
 		"浮想绕曲岸",
 		"圆影覆华池",
@@ -36,39 +33,47 @@
 		"何时更杯酒，再得论心胸。",
 		"鹔鹴换美酒，舞衣罢雕龙。",
 	];
-	showPoem(0);
-	function GetRandomNum(Min, Max) {
-		var Range = Max - Min;
-		var Rand = Math.random();
-		return (Min + Math.round(Rand * Range));
+	var abg = $(".animate-background");
+	abg.css("background", '#aaa');
+	var dmTemp = 1;
+	setInterval(startRequest1, 4800);
+	function random(min, max) {
+		return Math.floor(min + Math.random() * (max - min));
 	};
-	function GetRandomColor(min, max) {
-		var r = GetRandomNum(min, max);
-		var g = GetRandomNum(min, max);
-		var b = GetRandomNum(min+10, max);
-		return 'rgb(' + r + ',' + g + ',' + b + ')';
+	function getReandomColor() {
+		return '#' + (function (h) { return new Array(7 - h.length).join("0") + h })((Math.random() * 0x1000000 << 0).toString(16));
 	};
-	function showPoem(i) {
-		setInterval(function () {
-			i++;
-			var poem = $('<div class=poem id ='+i+'></div>');
-			poem.text(data[i%data.length]);
-			poem.css("top", GetRandomNum(150, abg.height()) + 'px');
-			poem.css("left", GetRandomNum(0, abg.width() - 180) + 'px');
-			poem.css("background-color", bgColor);
-			abg.append(poem);
-			poem.show(500);
-			setTimeout(function () {
-				poem.hide(1000);
-				setTimeout(function () {
-					poem.remove();
-				}, 1000);
-			}, 5000)
-		}, 800);
+	function init() {
+		var h = 50;//字幕高度
+		var _top = 0;
+		var _height = $(".animate-background").height();
+		var _width = $(".animate-background").width();
+		$(abg).find('div').each(function () {
+			if ($(this).is(':animated')) { return; }
+			_top += h;
+			if (top > _height - h) { _top = 0; }
+			var start_left = _width + random(-10, 400);//左边字幕开始区域
+			$(this).css({
+				left: start_left,
+				top: _top,
+				color: getReandomColor()
+			});
+			var time = random(14000, 25000);
+			var end_left = _width + 500;//字幕结束消失的位置(相对现实区域的框)
+			$(this).animate({
+				left: "-" + end_left + "px"
+			}, time, function () {
+				this.remove();
+			});
+		});
 	};
-	function animate(object) {
-
-	}
-	
-	
+	function startRequest1() {
+		var base_item = random(0, data.length);
+		var count = random(0,20)
+		for (var i = 0; i < count; i++) {
+			var pom = $('<div class=pom>' + data[(base_item + i) % data.length] + '<div>');
+			abg.append(pom);
+		}
+		init();
+	};
 });
