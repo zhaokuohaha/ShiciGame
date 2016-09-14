@@ -1,0 +1,27 @@
+﻿body {
+}
+
+.page-head{
+	margin: 30px auto;
+}
+
+
+.btnSend:hover{
+	cursor:pointer;
+}
+
+.btnSend i{
+	font-size: 36px; 
+	line-height: inherit;
+}
+
+#send-msg i{
+	color: #27AE60;
+}
+#send-varse i{
+	color:#39a7d8;
+}
+
+.chat-area{
+	background-color: rgba(155, 214, 244, 0.2);
+}

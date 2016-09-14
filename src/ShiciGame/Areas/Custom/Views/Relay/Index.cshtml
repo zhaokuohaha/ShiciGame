@@ -1,47 +1,45 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+	Layout = "~/Views/Shared/_AnimateBgLayout.cshtml";
+	ViewData["Title"] = "接龙";
+}
+@section scripts{
+	@*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+	<script src="~/areas/relay/relayindex.js"></script>
+}
+@section styles{
+	<environment names="Development">
+		<link href="~/css/mobi.css" rel="stylesheet" />
+		<link rel="stylesheet" href="~/areas/relay/realyindex.css" />
+	</environment>
+	<environment names="Staging,Production">
+		<link rel="stylesheet" href="~/css/mobi.min.css" />
+		<link rel="stylesheet" href="~/areas/relay/realyindex.css" />
+	</environment>
+}
+
+<div class="flex-center">
+	<div class="container" style="z-index:100">
+		<div class="row">
+			<div class="page-head">
+				<h1>诗词接龙首页</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div id="spanstatus" class="top-gap scroll-view col chat-area" style="height:400px;">
+
+			</div>
+		</div>
+		<div class="row flex-center">
+			<div class="btnSend" id="send-msg"><i class="fa fa-comments"></i></div>
+			<div class="form col-3-4"><input type="text" id="textInput" /></div>
+			<div class="btnSend" id="send-varse"><i class="flex-left fa fa-send"></i></div>
+		</div>
+		<div class="input-group">
+
+		</div>
+
+	</div>
+</div>
 
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>接龙</title>
-	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-</head>
-<body>
-	<h1>诗词接龙首页</h1>
-	<input type="text" id="textInput"><button id="btnSend">发送</button>
-	<span id="spanstatus">信息</span>
-</body>
-</html>
-
-
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script>
-	var websocket;
-	$().ready(function () {
-		websocket = new WebSocket("ws://localhost:12866");
-		websocket.onopen = function () {
-			$('#spanstatus').text('connected!');
-		}
-		websocket.onmessage = function (evt) {
-			$('#spanstatus').text(evt.data);
-		}
-		websocket.onerror = function (evt) {
-			alert(evt.message);
-		}
-		websocket.onclose = function () {
-			$('#spanstatus').text("disconnected");
-		}
-		$("#btnSend").click(function () {
-			if (websocket.readyState == websocket.OPEN) {
-				websocket.send($("#textInput").val());
-			}
-			else {
-				$('#spanstatus').text("connection is closed");
-			}
-
-		});
-
-	});
-</script>

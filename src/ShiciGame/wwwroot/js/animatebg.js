@@ -1,9 +1,9 @@
 ﻿$(function () {
 	 $.ajax({
 		url: "/Home/GetRandomVerse",
-		data: {"count":"50"},
+		data: { "count": "50" },
+		type: "post",
 		success: function (data) {
-			console.log(data);
 			setInterval(startRequest(data), 4800);
 		},
 		error: function () {

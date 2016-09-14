@@ -80,7 +80,7 @@ namespace ShiciGame
 							buffer = new ArraySegment<byte>(data);
 							_websocketCollection.ForEach(async (socket) =>
 							{
-								if (socket != null && socket.State == WebSocketState.Open)
+								if (socket != null&& socket != websocket && socket.State == WebSocketState.Open)
 								{
 									await socket.SendAsync(buffer, type, true, token);
 								}

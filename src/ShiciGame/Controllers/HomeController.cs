@@ -49,6 +49,7 @@ namespace ShiciGame.Controllers
 		/// </summary>
 		/// <param name="count">数量</param>
 		/// <returns></returns>
+		[HttpPost]
 		public JsonResult GetRandomVerse(int count)
 		{
 			var data = dbcon.Shici_Ans.Skip(new Random().Next(dbcon.Shici_Ans.Count() - count)).Take(count).ToList();

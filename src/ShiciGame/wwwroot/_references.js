@@ -1,5 +1,6 @@
 ﻿/// <autosync enabled="true" />
-/// <reference path="js/aniamtebg.js" />
+/// <reference path="areas/relay/relayindex.js" />
+/// <reference path="js/animatebg.js" />
 /// <reference path="js/jcanvas.js" />
 /// <reference path="js/site.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
