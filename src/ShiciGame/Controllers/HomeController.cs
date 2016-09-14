@@ -1,4 +1,7 @@
-﻿using System;
+﻿/*
+ * 主页
+ */
+using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,7 +43,12 @@ namespace ShiciGame.Controllers
         {
             return View();
         }
-
+		
+		/// <summary>
+		/// 随机获取一定数量的诗句
+		/// </summary>
+		/// <param name="count">数量</param>
+		/// <returns></returns>
 		public JsonResult GetRandomVerse(int count)
 		{
 			var data = dbcon.Shici_Ans.Skip(new Random().Next(dbcon.Shici_Ans.Count() - count)).Take(count).ToList();

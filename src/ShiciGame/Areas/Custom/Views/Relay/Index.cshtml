@@ -1,0 +1,47 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>接龙</title>
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+</head>
+<body>
+	<h1>诗词接龙首页</h1>
+	<input type="text" id="textInput"><button id="btnSend">发送</button>
+	<span id="spanstatus">信息</span>
+</body>
+</html>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+	var websocket;
+	$().ready(function () {
+		websocket = new WebSocket("ws://localhost:12866");
+		websocket.onopen = function () {
+			$('#spanstatus').text('connected!');
+		}
+		websocket.onmessage = function (evt) {
+			$('#spanstatus').text(evt.data);
+		}
+		websocket.onerror = function (evt) {
+			alert(evt.message);
+		}
+		websocket.onclose = function () {
+			$('#spanstatus').text("disconnected");
+		}
+		$("#btnSend").click(function () {
+			if (websocket.readyState == websocket.OPEN) {
+				websocket.send($("#textInput").val());
+			}
+			else {
+				$('#spanstatus').text("connection is closed");
+			}
+
+		});
+
+	});
+</script>
