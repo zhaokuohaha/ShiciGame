@@ -43,6 +43,7 @@ textarea {
 }
 
 .animate-background{
+	background-color: #dfdfdf;
 	position:fixed;
 	margin:0;
 	padding:0;

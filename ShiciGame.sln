@@ -12,15 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ShiciGame", "src\ShiciGame\ShiciGame.xproj", "{86382D60-6136-4346-A529-18BE3E587D6F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ShiciGame.Data", "ShiciGame.Data", "{DF1EFB53-0750-41D9-B84C-235AC04213A2}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{4F4D1E29-F762-4C61-8CC8-45A517741E77}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commons", "Commons", "{20BA4314-B9E0-41CB-AD81-B463880758B7}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Domain", "Domain\Domain\Domain.xproj", "{E7CEEB5A-F1DE-44AB-A85D-9A718D105661}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Service", "Service\Service.xproj", "{A1F3B099-CDEB-42C5-A196-DC26607246DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,21 +24,11 @@ Global
 		{86382D60-6136-4346-A529-18BE3E587D6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86382D60-6136-4346-A529-18BE3E587D6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86382D60-6136-4346-A529-18BE3E587D6F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E7CEEB5A-F1DE-44AB-A85D-9A718D105661}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E7CEEB5A-F1DE-44AB-A85D-9A718D105661}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E7CEEB5A-F1DE-44AB-A85D-9A718D105661}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E7CEEB5A-F1DE-44AB-A85D-9A718D105661}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1F3B099-CDEB-42C5-A196-DC26607246DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1F3B099-CDEB-42C5-A196-DC26607246DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1F3B099-CDEB-42C5-A196-DC26607246DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1F3B099-CDEB-42C5-A196-DC26607246DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{86382D60-6136-4346-A529-18BE3E587D6F} = {27BCF322-D9C7-4B54-9DC5-ADBEFDC1D4DD}
-		{E7CEEB5A-F1DE-44AB-A85D-9A718D105661} = {DF1EFB53-0750-41D9-B84C-235AC04213A2}
-		{A1F3B099-CDEB-42C5-A196-DC26607246DE} = {4F4D1E29-F762-4C61-8CC8-45A517741E77}
 	EndGlobalSection
 EndGlobal

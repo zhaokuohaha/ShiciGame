@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Domain;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using ShiciGame.Entities;
+using Newtonsoft.Json;
 
 namespace ShiciGame.Controllers
 {
-    public class HomeController : Controller
+	public class HomeController : Controller
     {
 		public HomeController(IServiceProvider services)
 		{
@@ -20,8 +19,6 @@ namespace ShiciGame.Controllers
 		ApplicationDbContext dbcon;
         public IActionResult Index()
         {
-			var data = dbcon.Shici_Ans.Count();
-			ViewData["count"] = data;
             return View();
         }
 
@@ -43,5 +40,11 @@ namespace ShiciGame.Controllers
         {
             return View();
         }
+
+		public JsonResult GetRandomVerse(int count)
+		{
+			var data = dbcon.Shici_Ans.Skip(new Random().Next(dbcon.Shici_Ans.Count() - count)).Take(count).ToList();
+			return Json(data);
+		}
     }
 }

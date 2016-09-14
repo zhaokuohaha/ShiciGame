@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using ShiciGame.Entities;
 
 namespace ShiciGame
 {
@@ -29,7 +30,7 @@ namespace ShiciGame
         public void ConfigureServices(IServiceCollection services)
         {
 			// Add framework services.
-			services.AddDbContext<Domain.ApplicationDbContext>(options => options.UseMySql(Configuration.GetConnectionString("ApplicationDbContext")));
+			services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(Configuration.GetConnectionString("ApplicationDbContext")));
             services.AddMvc();
         }
 
