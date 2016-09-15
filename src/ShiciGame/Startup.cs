@@ -42,9 +42,10 @@ namespace ShiciGame
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
 		{
-			loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+			//loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 			loggerFactory.AddDebug();
-
+			loggerFactory.AddConsole();
+			
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
@@ -66,7 +67,10 @@ namespace ShiciGame
 					_websocketCollection = new List<WebSocket>();
 				}
 				var websocket = await http.WebSockets.AcceptWebSocketAsync();
+					if (!_websocketCollection.Any())
+						RelayHelper.CurrentLetter = null;
 				_websocketCollection.Add(websocket);
+					
 				while (websocket.State == WebSocketState.Open)
 				{
 					var token = CancellationToken.None;
@@ -76,12 +80,12 @@ namespace ShiciGame
 					{
 						case WebSocketMessageType.Text:
 								var request = Encoding.UTF8.GetString(buffer.Array, buffer.Offset, buffer.Count).Split(new string[] { "###" }, StringSplitOptions.RemoveEmptyEntries);
-								RelayHelper res = RelayHelper.CheckVarse(request);
+								RelayReturn res = new RelayHelper(loggerFactory.CreateLogger("socket")).CheckVarse(request);
 								var type = WebSocketMessageType.Text;
 								var data = Encoding.UTF8.GetBytes(res.StyleClass+"###"+res.ResponseBody);
 								buffer = new ArraySegment<byte>(data);
 								///如果信息合法, 群发
-								if (res.IsLicitRequest)
+								if ( res.IsLicitRequest )
 								{
 									_websocketCollection.ForEach(async (socket) =>
 									{

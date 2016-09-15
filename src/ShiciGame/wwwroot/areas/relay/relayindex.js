@@ -2,18 +2,21 @@
 $().ready(function () {
 	websocket = new WebSocket("ws://localhost:12866");
 	websocket.onopen = function () {
-		$('#spanstatus').text('connected!');
+		var li = $("<li class='system-chat site-alert-success'>" + "connected ! " + "</li>");
+		$('#spanstatus').append(li);
 	}
 	websocket.onmessage = function (evt) {
-		var li = $("<li class='others-chat'>" + evt.data + "</li>");
+		console.log(evt);
+		var msg = evt.data.split("###");
+		var li = $("<li class=\""+msg[0]+"\">" + msg[1] + "</li>");
 		$('#spanstatus').append(li);
 	}
 	websocket.onerror = function (evt) {
-		var li = $("<li class='system-chat'>" + evt + "</li>");
+		var li = $("<li class='system-chat site-alert-error'>" + evt.data + "</li>");
 		$('#spanstatus').append(li);
 	}
 	websocket.onclose = function () {
-		var li = $("<li class='system-chat'>" + "disconnected ! " + "</li>");
+		var li = $("<li class='system-chat site-alert-error'>" + "disconnected ! " + "</li>");
 		$('#spanstatus').append(li);
 		
 	}
