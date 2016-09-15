@@ -12,6 +12,7 @@ using ShiciGame.Entities;
 using System.Net.WebSockets;
 using System.Threading;
 using System.Text;
+using ShiciGame.Areas.Commons;
 
 namespace ShiciGame
 {
@@ -74,18 +75,27 @@ namespace ShiciGame
 					switch (received.MessageType)
 					{
 						case WebSocketMessageType.Text:
-							var request = Encoding.UTF8.GetString(buffer.Array, buffer.Offset, buffer.Count);
-							var type = WebSocketMessageType.Text;
-							var data = Encoding.UTF8.GetBytes("Echo from server : " + request);
-							buffer = new ArraySegment<byte>(data);
-							_websocketCollection.ForEach(async (socket) =>
-							{
-								if (socket != null&& socket != websocket && socket.State == WebSocketState.Open)
+								var request = Encoding.UTF8.GetString(buffer.Array, buffer.Offset, buffer.Count).Split(new string[] { "###" }, StringSplitOptions.RemoveEmptyEntries);
+								RelayHelper res = RelayHelper.CheckVarse(request);
+								var type = WebSocketMessageType.Text;
+								var data = Encoding.UTF8.GetBytes(res.StyleClass+"###"+res.ResponseBody);
+								buffer = new ArraySegment<byte>(data);
+								///如果信息合法, 群发
+								if (res.IsLicitRequest)
 								{
-									await socket.SendAsync(buffer, type, true, token);
+									_websocketCollection.ForEach(async (socket) =>
+									{
+										if (socket != null && socket != websocket && socket.State == WebSocketState.Open)
+										{
+											await socket.SendAsync(buffer, type, true, token);
+										}
+									});
 								}
-							});
-							break;
+								else//否则只发回原作者
+								{
+									await websocket.SendAsync(buffer, type, true, token);
+								}
+								break;
 						}
 					}
 				}

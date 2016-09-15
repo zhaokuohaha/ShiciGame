@@ -17,5 +17,7 @@ namespace ShiciGame.Areas.Custom.Controllers
         {
             return View();
         }
+
+		
     }
 }

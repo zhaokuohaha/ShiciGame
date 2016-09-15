@@ -18,10 +18,12 @@ $().ready(function () {
 		
 	}
 	$(".btnSend").click(function () {
-		if (websocket.readyState == websocket.OPEN) {
+		var msgtype = $(this).attr('id') === 'send-varse' ? 'varse' : 'chat';
+		console.log(msgtype);
+		if (websocket.readyState === websocket.OPEN) {
 			var li = $("<li class='my-chat'>" + $("#textInput").val() + "</li>");
 			$('#spanstatus').append(li);
-			websocket.send($("#textInput").val());
+			websocket.send(msgtype + "###" + $("#textInput").val());
 		}
 		else {
 			var li = $("<li class='system-chat'>" + "connection is closed ! " + "</li>");
