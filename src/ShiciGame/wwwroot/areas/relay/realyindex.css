@@ -23,5 +23,124 @@
 }
 
 .chat-area{
-	background-color: rgba(155, 214, 244, 0.2);
+	background-color: rgba(88, 88, 88, 0.2);
+	border-radius: 4px;
+	height: 600px;
+}
+
+.chat-area > li{
+	list-style:none;
+}
+
+.user-info{
+	width: 60px;
+	display: inline-block;
+}
+div.user-image{
+	width: 60px;
+	height: 60px;
+	border-radius: 45px;
+	background-size:contain;
+}
+.user-name{
+	text-align:center;
+	font-size:14px;
+	color: darkgray;
+}
+
+.my-chat
+.system-chat
+.others-chat{
+	white-space:normal;
+}
+
+li.system-chat  div.user-image{
+	background-image: url(/images/autochat.png);
+}
+
+li.my-chat div.user-image{
+	background-image: url(/images/mychatl.png);
+}
+
+li.others-chat .user-image{
+	background-image: url(/images/matchchat.png);
+}
+
+.chat-body{
+	display:inline-block;
+	min-height:50px;
+	line-height: 50px;
+	border-radius: 5px;
+	vertical-align: top;
+	margin-top: 20px;
+	position: relative;
+}
+
+.chat-primary{
+	background-color: rgba(66,139,202,0.5);
+}
+.chat-primary:before{
+	border-color: rgba(66,139,202,0.5);
+}
+.chat-success{
+	background-color: rgba(92,184,92,0.5);
+}
+.chat-success:before{
+	border-color: rgba(92,184,92,0.5);
+}
+.chat-info{
+	background-color: rgba(91,192,222,0.5);
+}
+.chat-info:before{
+	border-color: rgba(91,192,222,0.5);
+}
+.chat-default{
+	background-color: rgba(255,255,255,.8);
+}
+.chat-default:before{
+	border-color: rgba(255,255,255,.8);
+}
+.chat-warnning{
+	background-color: rgba(240,173,78,0.5);
+}
+.chat-warnning:before{
+	border-color: rgba(240,173,78,0.5);
+}
+.chat-error{
+	background-color: rgba(212,63,58,0.5);
+}
+.chat-error:before{
+	border-color: rgba(212,63,58,0.5);
+}
+.chat-left:before{
+	content: " ";
+	display: block;
+	position: absolute;
+	left: -20px;
+	border-width: 10px;
+	border-style: solid;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	border-bottom-color: transparent;
+	border-top-width: 8px;
+	top: 10px;
+}
+.chat-left{
+	margin-left:15px;
+}
+.chat-right:before{
+	content: " ";
+	display: block;
+	position: absolute;
+	right: -20px;
+	border-width: 10px;
+	border-style: solid;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	border-top-width: 8px;
+	top: 10px;
+}
+.chat-right{
+	margin-right:15px;
 }

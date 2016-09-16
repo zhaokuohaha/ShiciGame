@@ -47,25 +47,25 @@ namespace ShiciGame.Areas.Commons
 		{	
 			//格式错误
 			if (varse.Length != 2)
-				return new RelayReturn(false, "system-chat site-alert-error", "发送失败, 请求不合法" );
+				return new RelayReturn(false, "system-chat###chat-error", "发送失败, 请求不合法" );
 			varse[0] = varse[0].Trim().Replace("\0", "");
 			varse[1] = varse[1].Trim().Replace("\0", "");
 			//聊天信息
 			if (varse[0] == "chat")
-				return new RelayReturn(true, "others-chat", varse[1]);
+				return new RelayReturn(true, "others-chat###chat-default", varse[1]);
 			//首字错误
 			if (CurrentLetter != null && varse[1].Substring(0, 1) != CurrentLetter)
-				return new RelayReturn(false, "system-chat site-alert-error", "诗句错误, 首字应为\"" + CurrentLetter);
+				return new RelayReturn(false, "system-chat###chat-error", "诗句错误, 首字应为\"" + CurrentLetter);
 			switch (VarseExists(varse[1])){
 				case 1:
 					CurrentLetter = varse[1].Last().ToString();
-					return new RelayReturn(true, "others-varse", varse[1]);
+					return new RelayReturn(true, "others-chat###chat-primary", varse[1]);
 				case 0:
-					return new RelayReturn(false, "system-chat site-alert-error", "诗词库中找不到" + varse[1]);
+					return new RelayReturn(false, "system-chat###chat-error", "诗词库中找不到" + varse[1]);
 				case -1:
-					return new RelayReturn(false, "system-chat site-alert-error", "服务器错误, 请稍后再试或联系管理员解决");
+					return new RelayReturn(false, "system-chat###chat-error", "服务器错误, 请稍后再试或联系管理员解决");
 				default:
-					return new RelayReturn(false, "system-chat site-alert-error", varse[1]);
+					return new RelayReturn(false, "system-chat###chat-error", varse[1]);
 			}
 		}
 

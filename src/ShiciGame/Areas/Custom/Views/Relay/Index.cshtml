@@ -4,7 +4,6 @@
 	ViewData["Title"] = "接龙";
 }
 @section scripts{
-	@*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
 	<script src="~/areas/relay/relayindex.js"></script>
 }
 @section styles{
@@ -26,8 +25,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div id="spanstatus" class="top-gap scroll-view col chat-area" style="height:400px;">
-
+			<div id="spanstatus" class="top-gap scroll-view col chat-area">
 			</div>
 		</div>
 		<div class="row flex-center">
@@ -39,6 +37,10 @@
 
 		</div>
 
+	</div>
+	<div class="hide-on-mobile" style="padding:0 30px; z-index:101">
+		<img src="~/images/qrCode.png" style="width: 200px; height:200px" />
+		<p>扫描二维码关注微信公众号</p>
 	</div>
 </div>
 
