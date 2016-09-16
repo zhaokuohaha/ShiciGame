@@ -25,12 +25,16 @@
 .chat-area{
 	background-color: rgba(88, 88, 88, 0.2);
 	border-radius: 4px;
-	height: 600px;
+	height: 450px;
+	min-height:450px;
 }
 
 .chat-area > li{
 	list-style:none;
+	white-space: nowrap;
 }
+
+
 
 .user-info{
 	width: 60px;
@@ -47,11 +51,8 @@ div.user-image{
 	font-size:14px;
 	color: darkgray;
 }
-
-.my-chat
-.system-chat
-.others-chat{
-	white-space:normal;
+.my-chat{
+	text-align:right;
 }
 
 li.system-chat  div.user-image{
@@ -68,12 +69,13 @@ li.others-chat .user-image{
 
 .chat-body{
 	display:inline-block;
-	min-height:50px;
 	line-height: 50px;
 	border-radius: 5px;
-	vertical-align: top;
-	margin-top: 20px;
+	vertical-align:text-top;
 	position: relative;
+	white-space:normal;	
+	padding: 0 10px;
+	margin: 10px 0;
 }
 
 .chat-primary{
